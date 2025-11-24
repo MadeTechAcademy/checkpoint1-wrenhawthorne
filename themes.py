@@ -2,8 +2,8 @@ from apprenticeship_duties import apprenticeship_duties
 
 duties_list = apprenticeship_duties
 
-def print_duties_list():
-    for duty in duties_list:
+def print_duties_list(duties):
+    for duty in duties:
         print("{0}\n".format(duty))
 
 if __name__=="__main__":
@@ -14,4 +14,4 @@ if __name__=="__main__":
     """)
     
     if user_input == '1':
-        print_duties_list()
+        print_duties_list(duties_list)
