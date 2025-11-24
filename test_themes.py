@@ -8,3 +8,11 @@ def test_duties_list():
     assert len(duties_list) == 13
     assert duties_list[0] == duty1
     assert duties_list[-1] == duty13
+
+def test_create_simple_html_output():
+    simple_html = """<html>
+        <head></head>
+        <body><p>Hello World!</p></body>
+        </html>"""
+
+    assert create_html_output()

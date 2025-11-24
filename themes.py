@@ -14,7 +14,6 @@ duties_list = [
     "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
 ]
 
-#list of duties
 def print_duties_list():
     for duty in duties_list:
         print("{0}\n".format(duty))
@@ -25,5 +24,6 @@ if __name__=="__main__":
     Press (1) to list all the duties\n
     Enter your choice:
     """)
+    
     if user_input == '1':
         print_duties_list()
