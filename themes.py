@@ -18,6 +18,12 @@ def print_duties_list():
     for duty in duties_list:
         print("{0}\n".format(duty))
 
+def create_html_output():
+    return """<html>
+        <head></head>
+        <body><p>Hello World!</p></body>
+        </html>"""
+
 if __name__=="__main__":
     user_input = input("""
     Welcome to apprentice themes!\n

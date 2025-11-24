@@ -1,4 +1,4 @@
-from themes import duties_list
+from themes import duties_list, create_html_output
 
 def test_duties_list():
     duty1 = "Duty 1 Script and code in at least one general purpose language and at least one domain-specific language to orchestrate infrastructure, follow test driven development and ensure appropriate test coverage."
