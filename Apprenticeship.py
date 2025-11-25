@@ -18,13 +18,3 @@ class Apprenticeship:
     def print_duties():
         for duty in Apprenticeship._duties:
             print("{0}\n".format(duty))
-
-if __name__=="__main__":
-    user_input = input("""
-    Welcome to apprentice themes!\n
-    Press (1) to list all the duties\n
-    Enter your choice:
-    """)
-    
-    if user_input == '1':
-        Apprenticeship.print_duties()
