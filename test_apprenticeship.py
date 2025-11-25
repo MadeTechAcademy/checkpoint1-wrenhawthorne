@@ -2,7 +2,8 @@ from Apprenticeship import Apprenticeship
 
 class TestPrintDuties:
     def test_prints_list_of_duties(self, capsys):
-        Apprenticeship.print_duties()
+        appr = Apprenticeship()
+        appr.print_duties()
         captured = capsys.readouterr()
         output = captured.out
 
@@ -14,6 +15,8 @@ class TestPrintDuties:
 
 class TestOutputHtml:
     def test_returns_html_template(self):
+        appr = Apprenticeship()
+
         htmlTemplate = '''<html>
             <head>
             <title>DevOps Engineer Duties</title>
@@ -22,4 +25,7 @@ class TestOutputHtml:
             </body>
             </html>'''
 
-        assert Apprenticeship.output_html() == htmlTemplate
+        assert appr.output_html() == htmlTemplate
+
+    def test_outputs_to_html_document(self):
+        ...

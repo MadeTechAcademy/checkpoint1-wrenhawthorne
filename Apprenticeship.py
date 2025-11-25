@@ -15,11 +15,11 @@ class Apprenticeship:
         "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
     ]
 
-    def print_duties():
+    def print_duties(self):
         for duty in Apprenticeship._duties:
             print("{0}\n".format(duty))
 
-    def output_html():
+    def output_html(self):
         return '''<html>
             <head>
             <title>DevOps Engineer Duties</title>
