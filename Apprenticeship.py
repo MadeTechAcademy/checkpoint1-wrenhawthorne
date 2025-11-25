@@ -18,3 +18,12 @@ class Apprenticeship:
     def print_duties():
         for duty in Apprenticeship._duties:
             print("{0}\n".format(duty))
+
+    def output_html():
+        return '''<html>
+            <head>
+            <title>DevOps Engineer Duties</title>
+            </head>
+            <p>Test!</p>
+            </body>
+            </html>'''

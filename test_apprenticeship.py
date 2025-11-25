@@ -13,7 +13,7 @@ class TestPrintDuties:
         assert lastSlice == ' with a relentless focus on the user experience.\n\n'
 
 class TestOutputHtml:
-    def test_outputs_duties_to_html(self):
+    def test_returns_html_template(self):
         htmlTemplate = '''<html>
             <head>
             <title>DevOps Engineer Duties</title>
@@ -22,4 +22,4 @@ class TestOutputHtml:
             </body>
             </html>'''
 
-        assert output_html() == htmlTemplate
+        assert Apprenticeship.output_html() == htmlTemplate
