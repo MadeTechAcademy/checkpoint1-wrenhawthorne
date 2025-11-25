@@ -24,6 +24,8 @@ class Apprenticeship:
             <head>
             <title>DevOps Engineer Duties</title>
             </head>
-            <p>Test!</p>
+            <ul>
+            <li>Test!</li>
+            </ul>
             </body>
             </html>'''

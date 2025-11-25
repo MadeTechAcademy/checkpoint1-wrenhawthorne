@@ -21,7 +21,9 @@ class TestOutputHtml:
             <head>
             <title>DevOps Engineer Duties</title>
             </head>
-            <p>Test!</p>
+            <ul>
+            <li>Test!</li>
+            </ul>
             </body>
             </html>'''
 
@@ -33,5 +35,5 @@ class TestOutputHtml:
 
         html = appr.output_html()
 
-        assert "<p>Focus on learning</p>" in html
-        assert "<p>Look after yourself</p>" in html
+        assert "<li>Focus on learning</li>" in html
+        assert "<li>Look after yourself</li>" in html
