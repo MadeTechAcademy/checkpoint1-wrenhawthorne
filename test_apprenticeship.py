@@ -1,7 +1,7 @@
 from Apprenticeship import Apprenticeship
 
 class TestPrintDuties:
-    def test_print_duties_method_prints_list(self, capsys):
+    def test_prints_list_of_duties(self, capsys):
         Apprenticeship.print_duties()
         captured = capsys.readouterr()
         output = captured.out
@@ -11,3 +11,15 @@ class TestPrintDuties:
 
         assert firstSlice == 'Duty 1 Script and code in at least one general pur'
         assert lastSlice == ' with a relentless focus on the user experience.\n\n'
+
+class TestOutputHtml:
+    def test_outputs_duties_to_html(self):
+        htmlTemplate = '''<html>
+            <head>
+            <title>DevOps Engineer Duties</title>
+            </head>
+            <p>Test!</p>
+            </body>
+            </html>'''
+
+        assert output_html() == htmlTemplate
