@@ -39,3 +39,15 @@ class TestOutputHtml:
 
         assert "<li>Focus on learning</li>" in html
         assert "<li>Look after yourself</li>" in html
+
+    def test_outputs_to_html_document(self, tmp_path):
+        appr = Apprenticeship()
+        appr._duties = ['Egg', 'Salad', 'Sando']
+
+        html_file = tmp_path / 'test.html'
+        appr.output_html()
+        output = html_file.read_text()
+
+        assert "<li>Egg</li>" in output
+        assert "<li>Salad</li>" in output
+        assert "<li>Sando</li>" in output
