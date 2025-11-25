@@ -16,20 +16,22 @@ class TestPrintDuties:
 class TestOutputHtml:
     def test_returns_html_template(self):
         appr = Apprenticeship()
+        appr._duties = ['Test!']
 
         htmlTemplate = '''<html>
-            <head>
-            <title>DevOps Engineer Duties</title>
-            </head>
-            <ul>
-            <li>Test!</li>
-            </ul>
-            </body>
-            </html>'''
+        <head>
+        <title>DevOps Engineer Duties</title>
+        </head>
+        <body>
+        <ul>
+        <li>Test!</li>
+        </ul>
+        </body>
+        </html>'''
 
         assert appr.output_html() == htmlTemplate
 
-    def test_inserts_duties_as_paragraphs(self):
+    def test_inserts_duties_as_list_items(self):
         appr = Apprenticeship()
         appr._duties = ['Focus on learning', 'Look after yourself', 'Read the road signs in Geoguessr and just lock in a guess early']
 

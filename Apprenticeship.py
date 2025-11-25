@@ -16,16 +16,24 @@ class Apprenticeship:
     ]
 
     def print_duties(self):
-        for duty in Apprenticeship._duties:
+        for duty in self._duties:
             print("{0}\n".format(duty))
 
     def output_html(self):
-        return '''<html>
-            <head>
-            <title>DevOps Engineer Duties</title>
-            </head>
-            <ul>
-            <li>Test!</li>
-            </ul>
-            </body>
-            </html>'''
+        html_list = '''<html>
+        <head>
+        <title>DevOps Engineer Duties</title>
+        </head>
+        <body>
+        <ul>
+        '''
+
+        for duty in self._duties:
+            html_list += '<li>{}</li>'.format(duty)
+        
+        html_list += '''
+        </ul>
+        </body>
+        </html>'''
+
+        return html_list
