@@ -81,3 +81,16 @@ class TestThemes:
         output = appr.get_duties_for_theme('bootcamp')
 
         assert output == expected
+
+    def test_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship()
+
+        bootcamp_duties = appr.get_duties_for_theme('bootcamp')
+        appr.set_duties_for_theme(bootcamp_duties)
+        
+        test_html_path = tmp_path / 'bootcamp.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
+
+        assert "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts" not in output
