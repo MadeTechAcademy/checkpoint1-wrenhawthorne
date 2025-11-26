@@ -36,4 +36,9 @@ class Apprenticeship:
         </body>
         </html>'''
 
+        with open('output.html', 'w') as html_file:
+            html_file.write(html_list)
+
+        print('Hooray! 🎉 File created!')
+
         return html_list

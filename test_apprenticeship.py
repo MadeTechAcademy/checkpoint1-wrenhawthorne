@@ -46,7 +46,8 @@ class TestOutputHtml:
 
         html_file = tmp_path / 'test.html'
         appr.output_html()
-        output = html_file.read_text()
+        html_file = open('output.html')
+        output = html_file.read()
 
         assert "<li>Egg</li>" in output
         assert "<li>Salad</li>" in output
