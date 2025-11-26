@@ -94,3 +94,16 @@ class TestThemes:
         output = html_file.read()
 
         assert "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts" not in output
+
+    def test_automate_theme_duties(self):
+        appr = Apprenticeship()
+        
+        expected = {
+        5: "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts",
+        7: "Duty 7 Provision cloud infrastructure using APIs, continually improve infrastructure-as-code, considering use of industry leading technologies as they become available (e.g. Serverless, Containers).",
+        10: "Duty 10 Implement a good coverage of monitoring (metrics, logs), ensuring that alerts are visible, tuneable and actionable.",
+        }
+
+        output = appr.get_duties_for_theme('automate')
+
+        assert output == expected
