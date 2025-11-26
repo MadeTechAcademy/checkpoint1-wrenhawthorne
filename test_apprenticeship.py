@@ -29,13 +29,13 @@ class TestOutputHtml:
         </body>
         </html>'''
 
-        assert appr.output_html() == htmlTemplate
+        assert appr.create_html() == htmlTemplate
 
     def test_inserts_duties_as_list_items(self):
         appr = Apprenticeship()
         appr._duties = ['Focus on learning', 'Look after yourself', 'Read the road signs in Geoguessr and just lock in a guess early']
 
-        html = appr.output_html()
+        html = appr.create_html()
 
         assert "<li>Focus on learning</li>" in html
         assert "<li>Look after yourself</li>" in html
@@ -44,9 +44,10 @@ class TestOutputHtml:
         appr = Apprenticeship()
         appr._duties = ['Egg', 'Salad', 'Sando']
 
-        html_file = tmp_path / 'test.html'
-        appr.output_html()
-        html_file = open('output.html')
+        test_html_content = appr.create_html()
+        test_html_path = tmp_path / 'test.html'
+        appr.output_html(test_html_content, test_html_path)
+        html_file = open(test_html_path)
         output = html_file.read()
 
         assert "<li>Egg</li>" in output

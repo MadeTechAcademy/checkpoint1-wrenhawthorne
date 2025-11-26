@@ -19,7 +19,7 @@ class Apprenticeship:
         for duty in self._duties:
             print("{0}\n".format(duty))
 
-    def output_html(self):
+    def create_html(self):
         html_list = '''<html>
         <head>
         <title>DevOps Engineer Duties</title>
@@ -36,9 +36,8 @@ class Apprenticeship:
         </body>
         </html>'''
 
-        with open('output.html', 'w') as html_file:
-            html_file.write(html_list)
-
-        print('Hooray! 🎉 File created!')
-
         return html_list
+    
+    def output_html(self, html_content, html_path = 'output.html'):
+        with open(html_path, 'w') as html_file:
+            html_file.write(html_content)
