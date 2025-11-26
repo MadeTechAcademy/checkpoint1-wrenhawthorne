@@ -15,12 +15,14 @@ class Apprenticeship:
         "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
     ]
 
+    _html_content = ''
+
     def print_duties(self):
         for duty in self._duties:
             print("{0}\n".format(duty))
 
     def create_html(self):
-        html_list = '''<html>
+        self._html_content = '''<html>
         <head>
         <title>DevOps Engineer Duties</title>
         </head>
@@ -29,15 +31,17 @@ class Apprenticeship:
         '''
 
         for duty in self._duties:
-            html_list += '<li>{}</li>'.format(duty)
+            self._html_content += '<li>{}</li>'.format(duty)
         
-        html_list += '''
+        self._html_content += '''
         </ul>
         </body>
         </html>'''
 
-        return html_list
+        return self._html_content
     
-    def output_html(self, html_content, html_path = 'output.html'):
+    def output_html(self, html_path = 'output.html'):
+        self.create_html()
+
         with open(html_path, 'w') as html_file:
-            html_file.write(html_content)
+            html_file.write(self._html_content)

@@ -44,9 +44,8 @@ class TestOutputHtml:
         appr = Apprenticeship()
         appr._duties = ['Egg', 'Salad', 'Sando']
 
-        test_html_content = appr.create_html()
         test_html_path = tmp_path / 'test.html'
-        appr.output_html(test_html_content, test_html_path)
+        appr.output_html(test_html_path)
         html_file = open(test_html_path)
         output = html_file.read()
 
