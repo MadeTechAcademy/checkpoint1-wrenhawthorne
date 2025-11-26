@@ -1,6 +1,24 @@
 from Apprenticeship import Apprenticeship
 
 class TestPrintDuties:
+    def test_prints_empty_list(self, capsys):
+        appr = Apprenticeship()
+        appr._duties = []
+        appr.print_duties()
+        captured = capsys.readouterr()
+        output = captured.out
+
+        assert output == ''
+
+    def test_prints_simple_list(self, capsys):
+        appr = Apprenticeship()
+        appr._duties = ['Apprentice', 'Ship']
+        appr.print_duties()
+        captured = capsys.readouterr()
+        output = captured.out
+
+        assert output == 'Apprentice\n\nShip\n\n'
+
     def test_prints_list_of_duties(self, capsys):
         appr = Apprenticeship()
         appr.print_duties()
