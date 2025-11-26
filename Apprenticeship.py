@@ -15,16 +15,22 @@ class Apprenticeship:
         "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
     ]
 
-    def print_duties():
-        for duty in Apprenticeship._duties:
+    _html_content = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>'''
+
+    def print_duties(self):
+        for duty in self._duties:
             print("{0}\n".format(duty))
 
-if __name__=="__main__":
-    user_input = input("""
-    Welcome to apprentice themes!\n
-    Press (1) to list all the duties\n
-    Enter your choice:
-    """)
+    def create_html(self):
+        for duty in self._duties:
+            self._html_content += '\n<li>{}</li>'.format(duty)
+        
+        self._html_content += '''\n</ul>\n</body>\n</html>'''
+
+        return self._html_content
     
-    if user_input == '1':
-        Apprenticeship.print_duties()
+    def output_html(self, html_path = 'output.html'):
+        self.create_html()
+
+        with open(html_path, 'w') as html_file:
+            html_file.write(self._html_content)
