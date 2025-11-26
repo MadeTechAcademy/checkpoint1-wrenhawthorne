@@ -22,12 +22,18 @@ class Apprenticeship:
             print("{0}\n".format(self._duties[duty]))
 
     def get_duties_for_theme(self, theme):
+        if theme == 'bootcamp':
+            return {
+            1: "Duty 1 Script and code in at least one general purpose language and at least one domain-specific language to orchestrate infrastructure, follow test driven development and ensure appropriate test coverage.",
+            2: "Duty 2 Initiate and facilitate knowledge sharing and technical collaboration with teams and individuals, with a focus on supporting development of team members.",
+            3: "Duty 3 Engage in productive pair/mob programming to underpin the practice of peer review.",
+            4: "Duty 4 Work as part of an agile team, and explore new ways of working, rapidly responding to changing user needs and with a relentless focus on the user experience. Understand the importance of continual improvement within a blameless culture.",
+            13: "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
+            }
         return {
-        1: "Duty 1 Script and code in at least one general purpose language and at least one domain-specific language to orchestrate infrastructure, follow test driven development and ensure appropriate test coverage.",
-        2: "Duty 2 Initiate and facilitate knowledge sharing and technical collaboration with teams and individuals, with a focus on supporting development of team members.",
-        3: "Duty 3 Engage in productive pair/mob programming to underpin the practice of peer review.",
-        4: "Duty 4 Work as part of an agile team, and explore new ways of working, rapidly responding to changing user needs and with a relentless focus on the user experience. Understand the importance of continual improvement within a blameless culture.",
-        13: "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
+        5: "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts",
+        7: "Duty 7 Provision cloud infrastructure using APIs, continually improve infrastructure-as-code, considering use of industry leading technologies as they become available (e.g. Serverless, Containers).",
+        10: "Duty 10 Implement a good coverage of monitoring (metrics, logs), ensuring that alerts are visible, tuneable and actionable.",
         }
     
     def set_duties_for_theme(self, duties):
