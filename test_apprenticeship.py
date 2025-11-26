@@ -18,16 +18,7 @@ class TestOutputHtml:
         appr = Apprenticeship()
         appr._duties = ['Test!']
 
-        htmlTemplate = '''<html>
-        <head>
-        <title>DevOps Engineer Duties</title>
-        </head>
-        <body>
-        <ul>
-        <li>Test!</li>
-        </ul>
-        </body>
-        </html>'''
+        htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
         assert appr.create_html() == htmlTemplate
 
