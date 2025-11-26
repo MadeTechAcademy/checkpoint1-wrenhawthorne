@@ -87,7 +87,7 @@ class TestThemes:
 
         bootcamp_duties = appr.get_duties_for_theme('bootcamp')
         appr.set_duties_for_theme(bootcamp_duties)
-        
+
         test_html_path = tmp_path / 'bootcamp.html'
         appr.output_html(test_html_path)
         html_file = open(test_html_path)

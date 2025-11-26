@@ -29,6 +29,11 @@ class Apprenticeship:
         4: "Duty 4 Work as part of an agile team, and explore new ways of working, rapidly responding to changing user needs and with a relentless focus on the user experience. Understand the importance of continual improvement within a blameless culture.",
         13: "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
         }
+    
+    def set_duties_for_theme(self, duties):
+        self._duties = duties
+
+        return self
 
     def create_html(self):
         for duty in self._duties:
