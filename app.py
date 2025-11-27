@@ -12,6 +12,7 @@ def app():
     To output all apprenticeship duties to HTML, press (2)\n
     To output 'Bootcamp' duties to HTML, press (3)\n
     To output 'Automate!' duties to HTML, press (4)\n
+    To output 'Houston, Prepare to Launch' duties to HTML, press (5)\n
     Enter your choice:
     """)
     
@@ -23,15 +24,21 @@ def app():
 
     if user_input == '3':
         apprenticeship.set_theme('bootcamp')
-        bootcamp_duties = apprenticeship.get_duties_for_theme('bootcamp')
-        apprenticeship.set_duties_for_theme(bootcamp_duties)
+        duties = apprenticeship.get_duties_for_theme('bootcamp')
+        apprenticeship.set_duties_for_theme(duties)
         apprenticeship.output_html('02_bootcamp.html')
 
     if user_input == '4':
         apprenticeship.set_theme('automate')
-        bootcamp_duties = apprenticeship.get_duties_for_theme('automate')
-        apprenticeship.set_duties_for_theme(bootcamp_duties)
+        duties = apprenticeship.get_duties_for_theme('automate')
+        apprenticeship.set_duties_for_theme(duties)
         apprenticeship.output_html('03_automate.html')
+
+    if user_input == '5':
+        apprenticeship.set_theme('houston')
+        duties = apprenticeship.get_duties_for_theme('houston')
+        apprenticeship.set_duties_for_theme(duties)
+        apprenticeship.output_html('04_houston.html')
 
 if __name__=="__main__":
     app()
