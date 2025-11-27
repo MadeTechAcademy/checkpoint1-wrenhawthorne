@@ -189,3 +189,22 @@ class TestThemes:
 
         assert len(output) == 1
         assert output[11] == duties_map[11]
+
+    def test_deeper_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        appr.set_theme('deeper')
+        deeper_duties = appr.get_duties_for_theme('deeper')
+        appr.set_duties_for_theme(deeper_duties)
+
+        test_html_path = tmp_path / 'deeper.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
+
+        assert '<h1>Going Deeper</h1>' in output
+
+        assert duties_map[11].description in output
+
+        for i in range(1, 11):
+            assert duties_map[i].description not in output
