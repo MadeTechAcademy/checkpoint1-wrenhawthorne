@@ -69,21 +69,18 @@ class TestOutputHtml:
         assert "<li>Salad</li>" in output
         assert "<li>Sando</li>" in output
 
-# class TestThemes:
-#     def test_bootcamp_theme_duties(self):
-#         appr = Apprenticeship(duties_map, themes_map)
-        
-#         expected = {
-#         1: "Duty 1 Script and code in at least one general purpose language and at least one domain-specific language to orchestrate infrastructure, follow test driven development and ensure appropriate test coverage.",
-#         2: "Duty 2 Initiate and facilitate knowledge sharing and technical collaboration with teams and individuals, with a focus on supporting development of team members.",
-#         3: "Duty 3 Engage in productive pair/mob programming to underpin the practice of peer review.",
-#         4: "Duty 4 Work as part of an agile team, and explore new ways of working, rapidly responding to changing user needs and with a relentless focus on the user experience. Understand the importance of continual improvement within a blameless culture.",
-#         13: "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
-#         }
+class TestThemes:
+    def test_bootcamp_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_map)
 
-#         output = appr.get_duties_for_theme('bootcamp')
+        output = appr.get_duties_for_theme('bootcamp')
 
-#         assert output == expected
+        assert len(output) == 5
+        assert output[0] == duties_map[1]
+        assert output[1] == duties_map[2]
+        assert output[2] == duties_map[3]
+        assert output[3] == duties_map[4]
+        assert output[4] == duties_map[13]
 
 #     def test_theme_duties_written_to_html(self, tmp_path):
 #         appr = Apprenticeship(duties_map, themes_map)
