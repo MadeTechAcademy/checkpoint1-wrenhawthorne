@@ -97,30 +97,18 @@ class TestThemes:
         html_file = open(test_html_path)
         output = html_file.read()
 
-        assert duties_map[1].description in output
-        assert duties_map[2].description in output
-        assert duties_map[3].description in output
-        assert duties_map[4].description in output
-        assert duties_map[13].description in output
+        for i in [1, 2, 3, 4, 13]:
+            assert duties_map[i].description in output
 
-        assert duties_map[5].description not in output
-        assert duties_map[6].description not in output
-        assert duties_map[7].description not in output
-        assert duties_map[8].description not in output
-        assert duties_map[9].description not in output
-        assert duties_map[10].description not in output
-        assert duties_map[11].description not in output
-        assert duties_map[12].description not in output
+        for i in range(5, 13):
+            assert duties_map[i].description not in output
 
-#     def test_automate_theme_duties(self):
-#         appr = Apprenticeship(duties_map, themes_map)
+    def test_automate_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_map)
         
-#         expected = {
-#         5: "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts",
-#         7: "Duty 7 Provision cloud infrastructure using APIs, continually improve infrastructure-as-code, considering use of industry leading technologies as they become available (e.g. Serverless, Containers).",
-#         10: "Duty 10 Implement a good coverage of monitoring (metrics, logs), ensuring that alerts are visible, tuneable and actionable.",
-#         }
+        output = appr.get_duties_for_theme('automate')
 
-#         output = appr.get_duties_for_theme('automate')
-
-#         assert output == expected
+        assert len(output) == 3
+        assert output[5] == duties_map[5]
+        assert output[7] == duties_map[7]
+        assert output[10] == duties_map[10]
