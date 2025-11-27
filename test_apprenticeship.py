@@ -150,3 +150,14 @@ class TestThemes:
 
         for i in range(1, 5):
             assert duties_map[i].description not in output
+
+    def test_get_houston_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        output = appr.get_duties_for_theme('houston')
+
+        assert len(output) == 4
+        assert output[6] == duties_map[6]
+        assert output[7] == duties_map[7]
+        assert output[10] == duties_map[10]
+        assert output[12] == duties_map[12]
