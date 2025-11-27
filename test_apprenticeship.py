@@ -81,6 +81,15 @@ class TestThemes:
 
         assert output == 'apprenticeship'
 
+    def test_set_theme(self):
+        appr = Apprenticeship(duties_map, themes_map)
+
+        appr.set_theme('bootcamp')
+        
+        output = appr.get_theme()
+
+        assert output == 'bootcamp'
+
     # def test_bootcamp_theme_duties(self):
     #     appr = Apprenticeship(duties_map, themes_map)
 

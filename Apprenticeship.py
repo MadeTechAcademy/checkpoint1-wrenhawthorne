@@ -1,8 +1,8 @@
 class Apprenticeship:
-    def __init__(self, duties, themes, theme = 'apprenticeship'):
-        self.duties = duties
-        self.themes = themes
-        self.theme = theme
+    def __init__(self, duties_map, themes_map):
+        self.duties = duties_map
+        self.themes = themes_map
+        self.theme = 'apprenticeship'
 
     _html_content = '<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n'
 
@@ -12,6 +12,11 @@ class Apprenticeship:
 
     def get_theme(self):
         return self.theme
+    
+    def set_theme(self, theme):
+        self.theme = theme
+
+        return self
 
     def get_duties_for_theme(self, theme):
         duty_ids = self.themes.get(theme, [])
