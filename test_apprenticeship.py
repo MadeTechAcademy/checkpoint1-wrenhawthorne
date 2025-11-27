@@ -249,3 +249,25 @@ class TestThemes:
 
         assert len(output) == 1
         assert output[9] == duties_map[9]
+
+    def test_security_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        appr.set_theme('security')
+        security_duties = appr.get_duties_for_theme('security')
+        appr.set_duties_for_theme(security_duties)
+
+        test_html_path = tmp_path / 'security.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
+
+        assert '<h1>Call Security</h1>' in output
+
+        assert duties_map[9].description in output
+
+        for i in range(1, 9):
+            assert duties_map[i].description not in output
+
+        for i in range(10, 14):
+            assert duties_map[i].description not in output
