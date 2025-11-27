@@ -209,6 +209,9 @@ class TestThemes:
         for i in range(1, 11):
             assert duties_map[i].description not in output
 
+        for i in range(12, 14):
+            assert duties_map[i].description not in output
+
     def test_get_assemble_theme_duties(self):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
@@ -216,3 +219,25 @@ class TestThemes:
 
         assert len(output) == 1
         assert output[8] == duties_map[8]
+
+    def test_assemble_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        appr.set_theme('assemble')
+        assemble_duties = appr.get_duties_for_theme('assemble')
+        appr.set_duties_for_theme(assemble_duties)
+
+        test_html_path = tmp_path / 'assemble.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
+
+        assert '<h1>Assemble!</h1>' in output
+
+        assert duties_map[8].description in output
+
+        for i in range(1, 8):
+            assert duties_map[i].description not in output
+
+        for i in range(9, 14):
+            assert duties_map[i].description not in output
