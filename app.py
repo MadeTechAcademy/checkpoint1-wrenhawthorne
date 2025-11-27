@@ -7,7 +7,7 @@ def app():
     apprenticeship = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
     user_input = input("""
-    Welcome to apprentice themes!\n
+    Welcome to Apprentice Themes!\n
     To view all apprentice duties, select (0)\n
     For all apprenticeship duties as HTML, select (1)\n
     For 'Bootcamp' duties as HTML, select (2)\n
@@ -16,7 +16,7 @@ def app():
     For 'Going Deeper' duties as HTML, select (5)\n
     For 'Assemble!' duties as HTML, select (6)\n
     For 'Call Security' duties as HTML, select (7)\n
-    Enter your choice:
+    Type your choice (and press Enter):
     """)
     
     if user_input not in themes:
@@ -27,15 +27,26 @@ def app():
 
     if theme is None:
         apprenticeship.print_duties()
-    else:
-        apprenticeship.set_theme(theme)
-        duties = apprenticeship.get_duties_for_theme(theme)
-        apprenticeship.set_duties_for_theme(duties)
+        return
 
-        html_file = f'0{user_input}_{theme}.html'
-        apprenticeship.output_html(html_file)
-        filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
+    apprenticeship.set_theme(theme)
+    duties = apprenticeship.get_duties_for_theme(theme)
+    apprenticeship.set_duties_for_theme(duties)
+
+    html_file = f'0{user_input}_{theme}.html'
+    apprenticeship.output_html(html_file)
+    filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
+
+    chooseDisplay = input("""
+    To view this theme's duties in your browser, select (1)\n
+    Type your choice (and press Enter):
+    """)
+
+    if chooseDisplay == '1':
+        print('\nLoading...\n')
         webbrowser.open_new_tab(filename)
+    else:
+        print('\nThanks for using Apprentice Themes!\n')
 
 if __name__=="__main__":
     app()

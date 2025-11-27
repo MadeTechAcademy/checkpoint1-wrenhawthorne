@@ -2,7 +2,7 @@ class HtmlWriter:
     def __init__(self, duties, theme_name_formatted = 'Apprenticeship'):
         self.duties = duties
         self.theme_name_formatted = theme_name_formatted
-        self._html_content = '<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n'
+        self._html_content = '<!DOCTYPE html>\n<html>\n<head>\n<title>DevOps Engineer Duties</title>\n<link rel="stylesheet" href="css/styles.css">\n</head>\n<body>\n'
 
     def create_html(self):
         self._html_content += f'<h1>{self.theme_name_formatted}</h1>'

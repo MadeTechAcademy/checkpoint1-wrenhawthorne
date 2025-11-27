@@ -1,0 +1,22 @@
+html { font-size: 16px; }
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url('https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg');
+    background-color: rgba(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+    margin: 32px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+h1 {
+    color: lightseagreen;
+    justify-self: center;
+}
+
+li {
+    padding: 8px
+}
