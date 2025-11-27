@@ -1,11 +1,12 @@
 from Apprenticeship import Apprenticeship
 from Duty import Duty
-from duties import duties_map
-from themes import themes_map
+from duties_map import duties_map
+from themes_to_duties_map import themes_to_duties_map
+from themes_formatted import themes_formatted
 
 class TestPrintDuties:
     def test_prints_empty_list(self, capsys):
-        appr = Apprenticeship(duties_map, themes_map)
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
         appr.duties = {}
         appr.print_duties()
         captured = capsys.readouterr()
@@ -14,7 +15,7 @@ class TestPrintDuties:
         assert output == ''
 
     def test_prints_simple_list(self, capsys):
-        appr = Apprenticeship(duties_map, themes_map)
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
         appr.duties = {1: Duty(1, 'Apprentice'), 2: Duty(1, 'Ship')}
         appr.print_duties()
         captured = capsys.readouterr()
@@ -23,7 +24,7 @@ class TestPrintDuties:
         assert output == 'Apprentice\n\nShip\n\n'
 
     def test_prints_list_of_duties(self, capsys):
-        appr = Apprenticeship(duties_map, themes_map)
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
         appr.print_duties()
         captured = capsys.readouterr()
         output = captured.out
@@ -37,13 +38,11 @@ class TestPrintDuties:
 class TestOutputHtml:
     def test_returns_html_template(self):
         test_duties = {1: Duty(1, 'Test!')}
-        appr = Apprenticeship(test_duties, themes_map)
+        appr = Apprenticeship(test_duties, themes_to_duties_map, themes_formatted)
 
-        htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
+        htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<h1>Apprenticeship</h1>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
         output = appr.create_html()
-
-        print('out', output)
 
         assert output == htmlTemplate
 
@@ -53,7 +52,7 @@ class TestOutputHtml:
             2: Duty(2, 'Look after yourself'), 
             3: Duty(3, 'Read the road signs in Geoguessr and just lock in a guess early')
             }
-        appr = Apprenticeship(test_duties, themes_map)
+        appr = Apprenticeship(test_duties, themes_to_duties_map, themes_formatted)
 
         html = appr.create_html()
 
@@ -62,7 +61,7 @@ class TestOutputHtml:
 
     def test_outputs_to_html_document(self, tmp_path):
         test_duties = {1: Duty(1, 'Egg'), 2: Duty(2, 'Salad'), 3: Duty(3, 'Sando')}
-        appr = Apprenticeship(test_duties, themes_map)
+        appr = Apprenticeship(test_duties, themes_to_duties_map, themes_formatted)
 
         test_html_path = tmp_path / 'test.html'
         appr.output_html(test_html_path)
@@ -75,14 +74,14 @@ class TestOutputHtml:
 
 class TestThemes:
     def test_get_theme(self):
-        appr = Apprenticeship(duties_map, themes_map)
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
         output = appr.get_theme()
 
         assert output == 'apprenticeship'
 
     def test_set_theme(self):
-        appr = Apprenticeship(duties_map, themes_map)
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
         appr.set_theme('bootcamp')
         
