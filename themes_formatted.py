@@ -2,5 +2,6 @@ themes_formatted = {
     'apprenticeship': 'Apprenticeship',
     'bootcamp': 'Bootcamp',
     'automate': 'Automate!',
-    'houston': 'Houston, Prepare to Launch'
+    'houston': 'Houston, Prepare to Launch',
+    'deeper': 'Going Deeper'
 }
