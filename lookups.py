@@ -15,3 +15,34 @@ duties_map = {
         12: Duty(12, "Duty 12 Look to automate any manual tasks that are repeated, often using APIs."),
         13: Duty(13, "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience.")
     }
+
+themes = {
+    '0': None,
+    '1': 'apprenticeship',
+    '2': 'bootcamp',
+    '3': 'automate',
+    '4': 'houston',
+    '5': 'deeper',
+    '6': 'assemble',
+    '7': 'security'
+}
+
+themes_formatted = {
+    'apprenticeship': 'Apprenticeship',
+    'bootcamp': 'Bootcamp',
+    'automate': 'Automate!',
+    'houston': 'Houston, Prepare to Launch',
+    'deeper': 'Going Deeper',
+    'assemble': 'Assemble!',
+    'security': 'Call Security'
+}
+
+themes_to_duties_map = {
+    'apprenticeship': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    'bootcamp': [1, 2, 3, 4, 13],
+    'automate': [5, 7, 10],
+    'houston': [6, 7, 10, 12],
+    'deeper': [11],
+    'assemble': [8],
+    'security': [9]
+}

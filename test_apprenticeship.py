@@ -1,9 +1,7 @@
 from Apprenticeship import Apprenticeship
 from Duty import Duty
 from HtmlWriter import HtmlWriter
-from duties_map import duties_map
-from themes_to_duties_map import themes_to_duties_map
-from themes_formatted import themes_formatted
+from lookups import duties_map, themes_to_duties_map, themes_formatted
 
 class TestPrintDuties:
     def test_prints_empty_list(self, capsys):

@@ -1,7 +1,5 @@
 from Apprenticeship import Apprenticeship
-from duties_map import duties_map
-from themes_to_duties_map import themes_to_duties_map
-from themes_formatted import themes_formatted
+from lookups import duties_map, themes, themes_to_duties_map, themes_formatted
 
 def app():
     apprenticeship = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
@@ -19,47 +17,19 @@ def app():
     Enter your choice:
     """)
     
-    if user_input == '0':
+    if user_input not in themes:
+        print('\nPlease select a valid option!\n')
+        return
+    
+    theme = themes[user_input]
+
+    if theme is None:
         apprenticeship.print_duties()
-
-    if user_input == '1':
-        apprenticeship.output_html('01_apprenticeship.html')
-
-    if user_input == '2':
-        apprenticeship.set_theme('bootcamp')
-        duties = apprenticeship.get_duties_for_theme('bootcamp')
+    else:
+        apprenticeship.set_theme(theme)
+        duties = apprenticeship.get_duties_for_theme(theme)
         apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('02_bootcamp.html')
-
-    if user_input == '3':
-        apprenticeship.set_theme('automate')
-        duties = apprenticeship.get_duties_for_theme('automate')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('03_automate.html')
-
-    if user_input == '4':
-        apprenticeship.set_theme('houston')
-        duties = apprenticeship.get_duties_for_theme('houston')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('04_houston.html')
-
-    if user_input == '5':
-        apprenticeship.set_theme('deeper')
-        duties = apprenticeship.get_duties_for_theme('deeper')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('05_deeper.html')
-
-    if user_input == '6':
-        apprenticeship.set_theme('assemble')
-        duties = apprenticeship.get_duties_for_theme('assemble')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('06_assemble.html')
-
-    if user_input == '7':
-        apprenticeship.set_theme('security')
-        duties = apprenticeship.get_duties_for_theme('security')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('07_security.html')
+        apprenticeship.output_html(f'0{user_input}_{theme}.html')
 
 if __name__=="__main__":
     app()
