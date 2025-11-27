@@ -1,3 +1,5 @@
+import os
+import webbrowser
 from Apprenticeship import Apprenticeship
 from lookups import duties_map, themes, themes_to_duties_map, themes_formatted
 
@@ -29,7 +31,11 @@ def app():
         apprenticeship.set_theme(theme)
         duties = apprenticeship.get_duties_for_theme(theme)
         apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html(f'0{user_input}_{theme}.html')
+
+        html_file = f'0{user_input}_{theme}.html'
+        apprenticeship.output_html(html_file)
+        filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
+        webbrowser.open_new_tab(filename)
 
 if __name__=="__main__":
     app()
