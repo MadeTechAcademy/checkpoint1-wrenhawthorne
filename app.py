@@ -22,11 +22,13 @@ def app():
         apprenticeship.output_html('01_apprenticeship.html')
 
     if user_input == '3':
+        apprenticeship.set_theme('bootcamp')
         bootcamp_duties = apprenticeship.get_duties_for_theme('bootcamp')
         apprenticeship.set_duties_for_theme(bootcamp_duties)
         apprenticeship.output_html('02_bootcamp.html')
 
     if user_input == '4':
+        apprenticeship.set_theme('automate')
         bootcamp_duties = apprenticeship.get_duties_for_theme('automate')
         apprenticeship.set_duties_for_theme(bootcamp_duties)
         apprenticeship.output_html('03_automate.html')

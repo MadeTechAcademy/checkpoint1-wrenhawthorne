@@ -89,60 +89,64 @@ class TestThemes:
 
         assert output == 'bootcamp'
 
-    # def test_bootcamp_theme_duties(self):
-    #     appr = Apprenticeship(duties_map, themes_map)
+    def test_get_bootcamp_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
-    #     output = appr.get_duties_for_theme('bootcamp')
+        output = appr.get_duties_for_theme('bootcamp')
 
-    #     assert len(output) == 5
-    #     assert output[1] == duties_map[1]
-    #     assert output[2] == duties_map[2]
-    #     assert output[3] == duties_map[3]
-    #     assert output[4] == duties_map[4]
-    #     assert output[13] == duties_map[13]
+        assert len(output) == 5
+        assert output[1] == duties_map[1]
+        assert output[2] == duties_map[2]
+        assert output[3] == duties_map[3]
+        assert output[4] == duties_map[4]
+        assert output[13] == duties_map[13]
 
-    # def test_bootcamp_theme_duties_written_to_html(self, tmp_path):
-    #     appr = Apprenticeship(duties_map, themes_map)
+    def test_bootcamp_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
-    #     bootcamp_duties = appr.get_duties_for_theme('bootcamp')
-    #     appr.set_duties_for_theme(bootcamp_duties)
+        appr.set_theme('bootcamp')
+        bootcamp_duties = appr.get_duties_for_theme('bootcamp')
+        appr.set_duties_for_theme(bootcamp_duties)
 
-    #     test_html_path = tmp_path / '02_bootcamp.html'
-    #     appr.output_html(test_html_path)
-    #     html_file = open(test_html_path)
-    #     output = html_file.read()
+        test_html_path = tmp_path / '02_bootcamp.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
 
-    #     assert '<h1>Bootcamp</h1>' in output
+        assert '<h1>Bootcamp</h1>' in output
 
-    #     for i in [1, 2, 3, 4, 13]:
-    #         assert duties_map[i].description in output
+        for i in [1, 2, 3, 4, 13]:
+            assert duties_map[i].description in output
 
-    #     for i in range(5, 13):
-    #         assert duties_map[i].description not in output
+        for i in range(5, 13):
+            assert duties_map[i].description not in output
 
-    # def test_automate_theme_duties(self):
-    #     appr = Apprenticeship(duties_map, themes_map)
-        
-    #     output = appr.get_duties_for_theme('automate')
+    def test_get_automate_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
-    #     assert len(output) == 3
-    #     assert output[5] == duties_map[5]
-    #     assert output[7] == duties_map[7]
-    #     assert output[10] == duties_map[10]
+        output = appr.get_duties_for_theme('automate')
 
-    # def test_automate_theme_duties_written_to_html(self, tmp_path):
-    #     appr = Apprenticeship(duties_map, themes_map)
+        assert len(output) == 3
+        assert output[5] == duties_map[5]
+        assert output[7] == duties_map[7]
+        assert output[10] == duties_map[10]
 
-    #     automate_duties = appr.get_duties_for_theme('automate')
-    #     appr.set_duties_for_theme(automate_duties)
+    def test_automate_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
-    #     test_html_path = tmp_path / 'automate.html'
-    #     appr.output_html(test_html_path)
-    #     html_file = open(test_html_path)
-    #     output = html_file.read()
+        appr.set_theme('automate')
+        automate_duties = appr.get_duties_for_theme('automate')
+        appr.set_duties_for_theme(automate_duties)
 
-    #     for i in [5, 7, 10]:
-    #         assert duties_map[i].description in output
+        test_html_path = tmp_path / 'automate.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
 
-    #     for i in range(1, 5):
-    #         assert duties_map[i].description not in output
+        assert '<h1>Automate!</h1>' in output
+
+        for i in [5, 7, 10]:
+            assert duties_map[i].description in output
+
+        for i in range(1, 5):
+            assert duties_map[i].description not in output
