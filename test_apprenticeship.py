@@ -36,20 +36,24 @@ class TestPrintDuties:
 
 class TestOutputHtml:
     def test_returns_html_template(self):
-        appr = Apprenticeship(duties_map, themes_map)
-        appr.duties = {1: Duty(1, 'Test!')}
+        test_duties = {1: Duty(1, 'Test!')}
+        appr = Apprenticeship(test_duties, themes_map)
 
         htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
-        assert appr.create_html() == htmlTemplate
+        output = appr.create_html()
+
+        print('out', output)
+
+        assert output == htmlTemplate
 
     def test_inserts_duties_as_list_items(self):
-        appr = Apprenticeship(duties_map, themes_map)
-        appr.duties = {
+        test_duties = {
             1: Duty(1, 'Focus on learning'), 
             2: Duty(2, 'Look after yourself'), 
             3: Duty(3, 'Read the road signs in Geoguessr and just lock in a guess early')
             }
+        appr = Apprenticeship(test_duties, themes_map)
 
         html = appr.create_html()
 
@@ -57,8 +61,8 @@ class TestOutputHtml:
         assert "<li>Look after yourself</li>" in html
 
     def test_outputs_to_html_document(self, tmp_path):
-        appr = Apprenticeship(duties_map, themes_map)
-        appr.duties = {1: Duty(1, 'Egg'), 2: Duty(2, 'Salad'), 3: Duty(3, 'Sando')}
+        test_duties = {1: Duty(1, 'Egg'), 2: Duty(2, 'Salad'), 3: Duty(3, 'Sando')}
+        appr = Apprenticeship(test_duties, themes_map)
 
         test_html_path = tmp_path / 'test.html'
         appr.output_html(test_html_path)
@@ -76,24 +80,37 @@ class TestThemes:
         output = appr.get_duties_for_theme('bootcamp')
 
         assert len(output) == 5
-        assert output[0] == duties_map[1]
-        assert output[1] == duties_map[2]
-        assert output[2] == duties_map[3]
-        assert output[3] == duties_map[4]
-        assert output[4] == duties_map[13]
+        assert output[1] == duties_map[1]
+        assert output[2] == duties_map[2]
+        assert output[3] == duties_map[3]
+        assert output[4] == duties_map[4]
+        assert output[13] == duties_map[13]
 
-#     def test_theme_duties_written_to_html(self, tmp_path):
-#         appr = Apprenticeship(duties_map, themes_map)
+    def test_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_map)
 
-#         bootcamp_duties = appr.get_duties_for_theme('bootcamp')
-#         appr.set_duties_for_theme(bootcamp_duties)
+        bootcamp_duties = appr.get_duties_for_theme('bootcamp')
+        appr.set_duties_for_theme(bootcamp_duties)
 
-#         test_html_path = tmp_path / 'bootcamp.html'
-#         appr.output_html(test_html_path)
-#         html_file = open(test_html_path)
-#         output = html_file.read()
+        test_html_path = tmp_path / 'bootcamp.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
 
-#         assert "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts" not in output
+        assert duties_map[1].description in output
+        assert duties_map[2].description in output
+        assert duties_map[3].description in output
+        assert duties_map[4].description in output
+        assert duties_map[13].description in output
+
+        assert duties_map[5].description not in output
+        assert duties_map[6].description not in output
+        assert duties_map[7].description not in output
+        assert duties_map[8].description not in output
+        assert duties_map[9].description not in output
+        assert duties_map[10].description not in output
+        assert duties_map[11].description not in output
+        assert duties_map[12].description not in output
 
 #     def test_automate_theme_duties(self):
 #         appr = Apprenticeship(duties_map, themes_map)

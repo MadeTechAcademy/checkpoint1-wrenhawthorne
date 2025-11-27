@@ -10,23 +10,23 @@ class Apprenticeship:
             print("{0}\n".format(self.duties[duty].description))
 
     def get_duties_for_theme(self, theme = 'apprenticeship'):
-        duty_id_list = self.themes.get(theme)
-        duties = []
+        duty_ids = self.themes.get(theme, [])
+        duties = {}
 
-        for duty_id in duty_id_list:
-            duty = self.duties[duty_id]
-            duties.append(duty)
+        for duty_id in duty_ids:
+            if duty_id in self.duties:
+                duties[duty_id] = self.duties[duty_id]
 
         return duties
     
     def set_duties_for_theme(self, duties):
-        self._duties = duties
+        self.duties = duties
 
         return self
 
     def create_html(self):
-        for duty in self.duties.values():
-            self._html_content += f'\n<li>{duty.description}</li>'
+        for duty_id in self.duties.keys():
+            self._html_content += f'\n<li>{self.duties[duty_id].description}</li>'
         
         self._html_content += '''\n</ul>\n</body>\n</html>'''
 
