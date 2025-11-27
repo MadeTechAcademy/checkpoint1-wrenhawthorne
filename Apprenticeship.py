@@ -1,15 +1,16 @@
 class Apprenticeship:
-    def __init__(self, duties, themes):
+    def __init__(self, duties, themes, theme = 'apprenticeship'):
         self.duties = duties
         self.themes = themes
+        self.theme = theme
 
-    _html_content = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>'''
+    _html_content = '<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n'
 
     def print_duties(self):
         for duty in self.duties:
             print("{0}\n".format(self.duties[duty].description))
 
-    def get_duties_for_theme(self, theme = 'apprenticeship'):
+    def get_duties_for_theme(self, theme):
         duty_ids = self.themes.get(theme, [])
         duties = {}
 
@@ -18,7 +19,7 @@ class Apprenticeship:
                 duties[duty_id] = self.duties[duty_id]
 
         return duties
-    
+
     def set_duties_for_theme(self, duties):
         self.duties = duties
 
@@ -26,13 +27,14 @@ class Apprenticeship:
 
     def create_html(self):
         for duty_id in self.duties.keys():
+            self._html_content += '<ul>'
             self._html_content += f'\n<li>{self.duties[duty_id].description}</li>'
         
         self._html_content += '''\n</ul>\n</body>\n</html>'''
 
         return self._html_content
     
-    def output_html(self, html_path = 'output.html'):
+    def output_html(self, html_path = '01_apprenticeship.html'):
         self.create_html()
 
         with open(html_path, 'w') as html_file:
