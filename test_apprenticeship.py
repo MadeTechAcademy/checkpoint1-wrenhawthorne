@@ -181,3 +181,11 @@ class TestThemes:
 
         for i in range(1, 6):
             assert duties_map[i].description not in output
+
+    def test_get_deeper_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        output = appr.get_duties_for_theme('deeper')
+
+        assert len(output) == 1
+        assert output[11] == duties_map[11]
