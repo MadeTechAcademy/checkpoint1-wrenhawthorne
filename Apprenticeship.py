@@ -1,36 +1,42 @@
-class Apprenticeship:
-    _duties = [
-        "Duty 1 Script and code in at least one general purpose language and at least one domain-specific language to orchestrate infrastructure, follow test driven development and ensure appropriate test coverage.",
-        "Duty 2 Initiate and facilitate knowledge sharing and technical collaboration with teams and individuals, with a focus on supporting development of team members.",
-        "Duty 3 Engage in productive pair/mob programming to underpin the practice of peer review.",
-        "Duty 4 Work as part of an agile team, and explore new ways of working, rapidly responding to changing user needs and with a relentless focus on the user experience. Understand the importance of continual improvement within a blameless culture.",
-        "Duty 5 Build and operate a Continuous Integration (CI) capability, employing version control of source code and related artefacts",
-        "Duty 6 Implement and improve release automation & orchestration, often using Application Programming Interfaces (API), as part of a continuous delivery and continuous deployment pipeline, ensuring that team(s) are able to deploy new code rapidly and safely.",
-        "Duty 7 Provision cloud infrastructure using APIs, continually improve infrastructure-as-code, considering use of industry leading technologies as they become available (e.g. Serverless, Containers).",
-        "Duty 8 Evolve and define architecture, utilising the knowledge and experience of the team to design in an optimal user experience, scalability, security, high availability and optimal performance.",
-        "Duty 9 Apply leading security practices throughout the Software Development Lifecycle (SDLC).",
-        "Duty 10 Implement a good coverage of monitoring (metrics, logs), ensuring that alerts are visible, tuneable and actionable.",
-        "Duty 11 Keep up with cutting edge by committing to continual training and development - utilise web resources for self-learning; horizon scanning; active membership of professional bodies such as Meetup Groups; subscribe to relevant publications.",
-        "Duty 12 Look to automate any manual tasks that are repeated, often using APIs.",
-        "Duty 13 Accept ownership of changes; embody the DevOps culture of 'you build it, you run it', with a relentless focus on the user experience."
-    ]
+from HtmlWriter import HtmlWriter
 
-    _html_content = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>'''
+class Apprenticeship:
+    def __init__(self, duties_map, themes_to_duties_map, themes_formatted):
+        self.duties = duties_map
+        self.themes_to_duties_map = themes_to_duties_map
+        self.themes_formatted = themes_formatted
+        self.theme = 'apprenticeship'
 
     def print_duties(self):
-        for duty in self._duties:
-            print("{0}\n".format(duty))
+        for duty in self.duties:
+            print("{0}\n".format(self.duties[duty].description))
 
-    def create_html(self):
-        for duty in self._duties:
-            self._html_content += '\n<li>{}</li>'.format(duty)
-        
-        self._html_content += '''\n</ul>\n</body>\n</html>'''
-
-        return self._html_content
+    def get_theme(self):
+        return self.theme
     
-    def output_html(self, html_path = 'output.html'):
-        self.create_html()
+    def set_theme(self, theme):
+        self.theme = theme
 
-        with open(html_path, 'w') as html_file:
-            html_file.write(self._html_content)
+        return self
+
+    def get_duties_for_theme(self, theme):
+        duty_ids = self.themes_to_duties_map.get(theme, [])
+        duties = {}
+
+        for duty_id in duty_ids:
+            if duty_id in self.duties:
+                duties[duty_id] = self.duties[duty_id]
+
+        return duties
+
+    def set_duties_for_theme(self, duties):
+        self.duties = duties
+
+        return self
+
+    def output_html(self, html_path='01_apprenticeship.html'):
+        theme_name_formatted = self.themes_formatted[self.theme]
+
+        html_writer = HtmlWriter(self.duties, theme_name_formatted)
+
+        html_writer.output_html(html_path)
