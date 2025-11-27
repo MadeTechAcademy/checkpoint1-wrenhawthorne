@@ -14,6 +14,7 @@ def app():
     For 'Automate!' duties as HTML, select (3)\n
     For 'Houston, Prepare to Launch' duties as HTML, select (4)\n
     For 'Going Deeper' duties as HTML, select (5)\n
+    For 'Assemble!' duties as HTML, select (6)\n
     Enter your choice:
     """)
     
@@ -46,6 +47,12 @@ def app():
         duties = apprenticeship.get_duties_for_theme('deeper')
         apprenticeship.set_duties_for_theme(duties)
         apprenticeship.output_html('05_deeper.html')
+
+    if user_input == '6':
+        apprenticeship.set_theme('assemble')
+        duties = apprenticeship.get_duties_for_theme('assemble')
+        apprenticeship.set_duties_for_theme(duties)
+        apprenticeship.output_html('06_assemble.html')
 
 if __name__=="__main__":
     app()
