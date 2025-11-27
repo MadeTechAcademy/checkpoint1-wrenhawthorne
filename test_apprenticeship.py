@@ -241,3 +241,11 @@ class TestThemes:
 
         for i in range(9, 14):
             assert duties_map[i].description not in output
+
+    def test_get_security_theme_duties(self):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        output = appr.get_duties_for_theme('security')
+
+        assert len(output) == 1
+        assert output[9] == duties_map[9]
