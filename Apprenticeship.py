@@ -10,6 +10,9 @@ class Apprenticeship:
         for duty in self.duties:
             print("{0}\n".format(self.duties[duty].description))
 
+    def get_theme(self):
+        return self.theme
+
     def get_duties_for_theme(self, theme):
         duty_ids = self.themes.get(theme, [])
         duties = {}
