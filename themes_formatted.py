@@ -3,5 +3,6 @@ themes_formatted = {
     'bootcamp': 'Bootcamp',
     'automate': 'Automate!',
     'houston': 'Houston, Prepare to Launch',
-    'deeper': 'Going Deeper'
+    'deeper': 'Going Deeper',
+    'assemble': 'Assemble!'
 }
