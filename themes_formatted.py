@@ -4,5 +4,6 @@ themes_formatted = {
     'automate': 'Automate!',
     'houston': 'Houston, Prepare to Launch',
     'deeper': 'Going Deeper',
-    'assemble': 'Assemble!'
+    'assemble': 'Assemble!',
+    'security': 'Call Security'
 }
