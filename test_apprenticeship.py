@@ -1,5 +1,6 @@
 from Apprenticeship import Apprenticeship
 from Duty import Duty
+from HtmlWriter import HtmlWriter
 from duties_map import duties_map
 from themes_to_duties_map import themes_to_duties_map
 from themes_formatted import themes_formatted
@@ -38,11 +39,11 @@ class TestPrintDuties:
 class TestOutputHtml:
     def test_returns_html_template(self):
         test_duties = {1: Duty(1, 'Test!')}
-        appr = Apprenticeship(test_duties, themes_to_duties_map, themes_formatted)
+        html_writer = HtmlWriter(test_duties)
 
         htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<h1>Apprenticeship</h1>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
-        output = appr.create_html()
+        output = html_writer.create_html()
 
         assert output == htmlTemplate
 
@@ -52,9 +53,9 @@ class TestOutputHtml:
             2: Duty(2, 'Look after yourself'), 
             3: Duty(3, 'Read the road signs in Geoguessr and just lock in a guess early')
             }
-        appr = Apprenticeship(test_duties, themes_to_duties_map, themes_formatted)
 
-        html = appr.create_html()
+        html_writer = HtmlWriter(test_duties)
+        html = html_writer.create_html()
 
         assert "<li>Focus on learning</li>" in html
         assert "<li>Look after yourself</li>" in html
@@ -84,7 +85,6 @@ class TestThemes:
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
         appr.set_theme('bootcamp')
-        
         output = appr.get_theme()
 
         assert output == 'bootcamp'
