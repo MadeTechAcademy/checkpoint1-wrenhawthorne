@@ -34,14 +34,14 @@ class TestPrintDuties:
         assert firstSlice == 'Duty 1 Script and code in at least one general pur'
         assert lastSlice == ' with a relentless focus on the user experience.\n\n'
 
-# class TestOutputHtml:
-#     def test_returns_html_template(self):
-#         appr = Apprenticeship(duties_map, themes_map)
-#         appr._duties = {1: 'Test!'}
+class TestOutputHtml:
+    def test_returns_html_template(self):
+        appr = Apprenticeship(duties_map, themes_map)
+        appr.duties = {1: Duty(1, 'Test!')}
 
-#         htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
+        htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
-#         assert appr.create_html() == htmlTemplate
+        assert appr.create_html() == htmlTemplate
 
 #     def test_inserts_duties_as_list_items(self):
 #         appr = Apprenticeship(duties_map, themes_map)

@@ -25,8 +25,8 @@ class Apprenticeship:
         return self
 
     def create_html(self):
-        for duty in self.duties:
-            self._html_content += '\n<li>{}</li>'.format(self.duties[duty])
+        for duty in self.duties.values():
+            self._html_content += f'\n<li>{duty.description}</li>'
         
         self._html_content += '''\n</ul>\n</body>\n</html>'''
 
