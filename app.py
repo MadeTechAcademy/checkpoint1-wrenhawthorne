@@ -1,7 +1,9 @@
 from Apprenticeship import Apprenticeship
+from duties import duties_map
+from themes import themes_map
 
 def app():
-    apprenticeship = Apprenticeship()
+    apprenticeship = Apprenticeship(duties_map, themes_map)
 
     user_input = input("""
     Welcome to apprentice themes!\n
