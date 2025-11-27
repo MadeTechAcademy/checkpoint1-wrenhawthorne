@@ -43,31 +43,31 @@ class TestOutputHtml:
 
         assert appr.create_html() == htmlTemplate
 
-#     def test_inserts_duties_as_list_items(self):
-#         appr = Apprenticeship(duties_map, themes_map)
-#         appr._duties = {
-#             1: 'Focus on learning', 
-#             2: 'Look after yourself', 
-#             3: 'Read the road signs in Geoguessr and just lock in a guess early'
-#             }
+    def test_inserts_duties_as_list_items(self):
+        appr = Apprenticeship(duties_map, themes_map)
+        appr.duties = {
+            1: Duty(1, 'Focus on learning'), 
+            2: Duty(2, 'Look after yourself'), 
+            3: Duty(3, 'Read the road signs in Geoguessr and just lock in a guess early')
+            }
 
-#         html = appr.create_html()
+        html = appr.create_html()
 
-#         assert "<li>Focus on learning</li>" in html
-#         assert "<li>Look after yourself</li>" in html
+        assert "<li>Focus on learning</li>" in html
+        assert "<li>Look after yourself</li>" in html
 
-#     def test_outputs_to_html_document(self, tmp_path):
-#         appr = Apprenticeship(duties_map, themes_map)
-#         appr._duties = {1: 'Egg', 2: 'Salad', 3: 'Sando'}
+    def test_outputs_to_html_document(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_map)
+        appr.duties = {1: Duty(1, 'Egg'), 2: Duty(2, 'Salad'), 3: Duty(3, 'Sando')}
 
-#         test_html_path = tmp_path / 'test.html'
-#         appr.output_html(test_html_path)
-#         html_file = open(test_html_path)
-#         output = html_file.read()
+        test_html_path = tmp_path / 'test.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
 
-#         assert "<li>Egg</li>" in output
-#         assert "<li>Salad</li>" in output
-#         assert "<li>Sando</li>" in output
+        assert "<li>Egg</li>" in output
+        assert "<li>Salad</li>" in output
+        assert "<li>Sando</li>" in output
 
 # class TestThemes:
 #     def test_bootcamp_theme_duties(self):
