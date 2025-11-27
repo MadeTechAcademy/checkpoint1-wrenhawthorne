@@ -161,3 +161,23 @@ class TestThemes:
         assert output[7] == duties_map[7]
         assert output[10] == duties_map[10]
         assert output[12] == duties_map[12]
+
+    def test_houston_theme_duties_written_to_html(self, tmp_path):
+        appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+
+        appr.set_theme('houston')
+        houston_duties = appr.get_duties_for_theme('houston')
+        appr.set_duties_for_theme(houston_duties)
+
+        test_html_path = tmp_path / 'houston.html'
+        appr.output_html(test_html_path)
+        html_file = open(test_html_path)
+        output = html_file.read()
+
+        assert '<h1>Houston, Prepare to Launch</h1>' in output
+
+        for i in [6, 7, 10, 12]:
+            assert duties_map[i].description in output
+
+        for i in range(1, 6):
+            assert duties_map[i].description not in output
