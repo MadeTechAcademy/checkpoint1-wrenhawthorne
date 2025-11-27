@@ -4,5 +4,6 @@ themes_to_duties_map = {
     'automate': [5, 7, 10],
     'houston': [6, 7, 10, 12],
     'deeper': [11],
-    'assemble': [8]
+    'assemble': [8],
+    'security': [9]
 }
