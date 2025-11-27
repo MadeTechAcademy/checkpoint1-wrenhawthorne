@@ -4,8 +4,7 @@ class Apprenticeship:
         self.themes_to_duties_map = themes_to_duties_map
         self.themes_formatted = themes_formatted
         self.theme = 'apprenticeship'
-
-    _html_content = '<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n'
+        self.html_writer = HtmlWriter(self.duties, self.themes_formatted, self.theme)
 
     def print_duties(self):
         for duty in self.duties:
@@ -35,18 +34,31 @@ class Apprenticeship:
         return self
 
     def create_html(self):
-        self._html_content += f'<h1>{self.themes_formatted[self.theme]}</h1>'
+        return self.html_writer._create_html(self.duties, self.html_content)
+    
+    def output_html(self, html_content, html_path = '01_apprenticeship.html'):
+        return self.html_writer.output_html(html_content, html_path)
+
+class HtmlWriter:
+    def __init__(self, duties, themes_formatted, theme):
+        self.duties = duties
+        self.themes_formatted = themes_formatted
+        self.theme = theme
+        self._html_content = '<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n'
+
+    def _create_html(self, duties, html_content, themes_formatted, theme):
+        self._html_content += f'<h1>{themes_formatted[theme]}</h1>'
         self._html_content += '\n<ul>'
         
-        for duty_id in self.duties.keys():
-            self._html_content += f'\n<li>{self.duties[duty_id].description}</li>'
+        for duty_id in duties.keys():
+            html_content += f'\n<li>{duties[duty_id].description}</li>'
         
-        self._html_content += '''\n</ul>\n</body>\n</html>'''
+        html_content += '''\n</ul>\n</body>\n</html>'''
 
-        return self._html_content
+        return html_content
     
-    def output_html(self, html_path = '01_apprenticeship.html'):
-        self.create_html()
+    def output_html(self, html_content, html_path = '01_apprenticeship.html'):
+        self._create_html(self.duties, html_content, self.themes_formatted, self.theme)
 
         with open(html_path, 'w') as html_file:
-            html_file.write(self._html_content)
+            html_file.write(html_content)
