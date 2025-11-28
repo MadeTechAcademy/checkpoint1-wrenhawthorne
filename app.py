@@ -57,7 +57,7 @@ class App:
         
         self.display_options(user_view_or_download, filename, html_file)
 
-        cli_ui.info(cli_ui.standout, cli_ui.green,'\nThanks for using Apprentice Themes!\n')
+        cli_ui.info(cli_ui.standout, cli_ui.green,'\nThanks for using Apprentice Themes!')
 
 if __name__=="__main__":
     app = App()
