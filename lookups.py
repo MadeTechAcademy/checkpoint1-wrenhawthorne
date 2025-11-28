@@ -45,3 +45,20 @@ themes_to_duties_map = {
     'assemble': [8],
     'security': [9]
 }
+
+choices_themes = [
+        "1 Apprenticeship",
+        "2 Bootcamp",
+        "3 Automate!",
+        "4 Houston, Prepare to Launch",
+        "5 Going Deeper",
+        "6 Assemble",
+        "7 Call Security"
+        ]
+
+choices_display = [
+        "1 View duties in terminal",
+        "2 View duties in browser",
+        "3 Output duties as HTML",
+        "4 Download duties as HTML"
+    ]
