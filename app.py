@@ -50,7 +50,7 @@ def app():
 
     user_view_or_download = cli_ui.ask_choice("How would you like to view this theme's duties?\n", choices=choices_display)
 
-    html_file = f'0{user_input}_{theme}.html'
+    html_file = f'0{user_input[0]}_{theme}.html'
     filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
     
     if user_view_or_download == choices_display[0]:
