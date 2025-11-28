@@ -149,6 +149,14 @@ class TestThemes:
         for i in range(1, 5):
             assert duties_map[i].description not in output
 
+        assert duties_map[6].description not in output
+
+        for i in range(8, 10):
+            assert duties_map[i].description not in output
+
+        assert duties_map[11].description not in output
+        assert duties_map[12].description not in output
+
     def test_get_houston_theme_duties(self):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
@@ -179,6 +187,11 @@ class TestThemes:
 
         for i in range(1, 6):
             assert duties_map[i].description not in output
+
+        assert duties_map[8].description not in output
+        assert duties_map[9].description not in output
+        assert duties_map[11].description not in output
+        assert duties_map[13].description not in output
 
     def test_get_deeper_theme_duties(self):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
