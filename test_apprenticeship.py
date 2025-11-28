@@ -24,15 +24,14 @@ class TestPrintDuties:
 
     def test_prints_list_of_duties(self, capsys):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+        with open('duties.txt', 'r') as file:
+            duties_reference = file.read()
+        
         appr.print_duties()
         captured = capsys.readouterr()
         output = captured.out
 
-        firstSlice = output[:50]
-        lastSlice = output[-50:]
-
-        assert firstSlice == 'Duty 1 Script and code in at least one general pur'
-        assert lastSlice == ' with a relentless focus on the user experience.\n\n'
+        assert output == duties_reference
 
 class TestOutputHtml:
     def test_returns_html_template(self):
