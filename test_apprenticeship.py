@@ -39,7 +39,7 @@ class TestOutputHtml:
         test_duties = {1: Duty(1, 'Test!')}
         html_writer = HtmlWriter(test_duties)
 
-        htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<h1>Apprenticeship</h1>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
+        htmlTemplate = '''<!DOCTYPE html>\n<html>\n<head>\n<title>DevOps Engineer Duties</title>\n<link rel="stylesheet" href="css/styles.css">\n</head>\n<body>\n<h1>Apprenticeship</h1>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
         output = html_writer.create_html()
 

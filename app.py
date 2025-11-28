@@ -1,5 +1,7 @@
 import os
 import webbrowser
+import shutil
+import time
 from Apprenticeship import Apprenticeship
 from lookups import duties_map, themes, themes_to_duties_map, themes_formatted
 
@@ -37,14 +39,20 @@ def app():
     apprenticeship.output_html(html_file)
     filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
 
-    chooseDisplay = input("""
+    selectViewOrDownload = input("""
     To view this theme's duties in your browser, select (1)\n
+    To download this theme's duties, select (2)\n
     Type your choice (and press Enter):
     """)
 
-    if chooseDisplay == '1':
-        print('\nLoading...\n')
+    if selectViewOrDownload == '1':
+        print('\nLoading...')
         webbrowser.open_new_tab(filename)
+    elif selectViewOrDownload == '2':
+        timestamp = time.time()
+        destination = os.path.expanduser(f'~/Downloads/{timestamp}_{html_file}')
+        shutil.copy(html_file, destination)
+        print(f"Saved to {destination}")
     else:
         print('\nThanks for using Apprentice Themes!\n')
 
