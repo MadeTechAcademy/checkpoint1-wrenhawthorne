@@ -34,7 +34,7 @@ def app():
     
     theme = themes[user_input]
 
-    cli_ui.info(cli_ui.standout, cli_ui.green, f"You have selected '{user_input}'\n")
+    cli_ui.info(cli_ui.standout, cli_ui.green, f"\nYou have selected '{user_input}'\n")
     time.sleep(0.5)
 
     apprenticeship.set_theme(theme)
@@ -63,9 +63,9 @@ def app():
         timestamp = time.time()
         destination = os.path.expanduser(f'~/Downloads/{timestamp}_{html_file}')
         shutil.copy(html_file, destination)
-        print(f"Saved to {destination}")
-    else:
-        print('\nThanks for using Apprentice Themes!\n')
+        cli_ui.info(cli_ui.standout, cli_ui.green, f"Saved to {destination}")
+
+    cli_ui.info(cli_ui.standout, cli_ui.green,'\nThanks for using Apprentice Themes!\n')
 
 if __name__=="__main__":
     app()
