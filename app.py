@@ -31,14 +31,10 @@ def app():
         ]
 
     user_input = cli_ui.ask_choice('Please select a theme:\n', choices=choices_themes)
-
-    if user_input not in themes:
-        print('\nPlease select a valid option!\n')
-        return
     
     theme = themes[user_input]
 
-    cli_ui.info(cli_ui.standout, cli_ui.green, f"You have selected {user_input}\n")
+    cli_ui.info(cli_ui.standout, cli_ui.green, f"You have selected '{user_input}'\n")
     time.sleep(0.5)
 
     # Ohh this should be reworked so after theme selection ANY set of duties can be displayed in terminal
