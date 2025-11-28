@@ -1,65 +1,64 @@
+import os
+import webbrowser
+import shutil
+import time
+import cli_ui
 from Apprenticeship import Apprenticeship
-from duties_map import duties_map
-from themes_to_duties_map import themes_to_duties_map
-from themes_formatted import themes_formatted
+from lookups import duties_map, themes, themes_to_duties_map, themes_formatted, choices_themes, choices_display
 
-def app():
-    apprenticeship = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+class App:
+    def __init__(self):
+        self.apprenticeship = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
-    user_input = input("""
-    Welcome to apprentice themes!\n
-    To view all apprentice duties, select (0)\n
-    For all apprenticeship duties as HTML, select (1)\n
-    For 'Bootcamp' duties as HTML, select (2)\n
-    For 'Automate!' duties as HTML, select (3)\n
-    For 'Houston, Prepare to Launch' duties as HTML, select (4)\n
-    For 'Going Deeper' duties as HTML, select (5)\n
-    For 'Assemble!' duties as HTML, select (6)\n
-    For 'Call Security' duties as HTML, select (7)\n
-    Enter your choice:
-    """)
-    
-    if user_input == '0':
-        apprenticeship.print_duties()
+    def cli_intro(self):
+        cli_ui.info(cli_ui.standout, cli_ui.red, "Welcome")
+        time.sleep(0.3)
+        cli_ui.info(cli_ui.standout, cli_ui.yellow, "to")
+        time.sleep(0.3)
+        cli_ui.info(cli_ui.standout, cli_ui.green, "Duty")
+        time.sleep(0.3)
+        cli_ui.info(cli_ui.standout, cli_ui.blue, "Viewer")
+        time.sleep(0.3)
+        cli_ui.info(cli_ui.standout, cli_ui.fuschia, "(v0.1)\n")
+        time.sleep(0.3)
 
-    if user_input == '1':
-        apprenticeship.output_html('01_apprenticeship.html')
+    def display_options(self, user_view_or_download, filename, html_file):
+        if user_view_or_download == choices_display[0]:
+            self.apprenticeship.print_duties()
+        elif user_view_or_download == choices_display[1]:
+            webbrowser.open_new_tab(filename)
+        elif user_view_or_download == choices_display[2]:
+            self.apprenticeship.output_html(html_file)
+        elif user_view_or_download == choices_display[3]:
+            self.apprenticeship.output_html(html_file)
+            timestamp = time.time()
+            destination = os.path.expanduser(f'~/Downloads/{timestamp}_{html_file}')
+            shutil.copy(html_file, destination)
+            cli_ui.info(cli_ui.standout, cli_ui.yellow, f"\nSaved to {destination}")
 
-    if user_input == '2':
-        apprenticeship.set_theme('bootcamp')
-        duties = apprenticeship.get_duties_for_theme('bootcamp')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('02_bootcamp.html')
+    def app(self):
+        self.cli_intro()
 
-    if user_input == '3':
-        apprenticeship.set_theme('automate')
-        duties = apprenticeship.get_duties_for_theme('automate')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('03_automate.html')
+        user_input = cli_ui.ask_choice('Please select a theme:\n', choices=choices_themes)
+        
+        theme = themes[user_input]
 
-    if user_input == '4':
-        apprenticeship.set_theme('houston')
-        duties = apprenticeship.get_duties_for_theme('houston')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('04_houston.html')
+        cli_ui.info(cli_ui.standout, cli_ui.green, f"\nYou have selected '{user_input}'\n")
+        time.sleep(0.5)
 
-    if user_input == '5':
-        apprenticeship.set_theme('deeper')
-        duties = apprenticeship.get_duties_for_theme('deeper')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('05_deeper.html')
+        self.apprenticeship.set_theme(theme)
+        duties = self.apprenticeship.get_duties_for_theme(theme)
+        self.apprenticeship.set_duties_for_theme(duties)
+        
+        user_view_or_download = cli_ui.ask_choice("How would you like to view this theme's duties?\n", choices=choices_display)
 
-    if user_input == '6':
-        apprenticeship.set_theme('assemble')
-        duties = apprenticeship.get_duties_for_theme('assemble')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('06_assemble.html')
+        html_file = f'0{user_input[0]}_{theme}.html'
+        filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
+        
+        self.display_options(user_view_or_download, filename, html_file)
 
-    if user_input == '7':
-        apprenticeship.set_theme('security')
-        duties = apprenticeship.get_duties_for_theme('security')
-        apprenticeship.set_duties_for_theme(duties)
-        apprenticeship.output_html('07_security.html')
+        cli_ui.info(cli_ui.standout, cli_ui.green,'\nThanks for using Apprentice Themes!')
 
 if __name__=="__main__":
-    app()
+    app = App()
+    app.app()

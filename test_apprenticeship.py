@@ -1,9 +1,7 @@
 from Apprenticeship import Apprenticeship
 from Duty import Duty
 from HtmlWriter import HtmlWriter
-from duties_map import duties_map
-from themes_to_duties_map import themes_to_duties_map
-from themes_formatted import themes_formatted
+from lookups import duties_map, themes_to_duties_map, themes_formatted
 
 class TestPrintDuties:
     def test_prints_empty_list(self, capsys):
@@ -26,22 +24,21 @@ class TestPrintDuties:
 
     def test_prints_list_of_duties(self, capsys):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
+        with open('duties.txt', 'r') as file:
+            duties_reference = file.read()
+        
         appr.print_duties()
         captured = capsys.readouterr()
         output = captured.out
 
-        firstSlice = output[:50]
-        lastSlice = output[-50:]
-
-        assert firstSlice == 'Duty 1 Script and code in at least one general pur'
-        assert lastSlice == ' with a relentless focus on the user experience.\n\n'
+        assert output == duties_reference
 
 class TestOutputHtml:
     def test_returns_html_template(self):
         test_duties = {1: Duty(1, 'Test!')}
         html_writer = HtmlWriter(test_duties)
 
-        htmlTemplate = '''<html>\n<head>\n<title>DevOps Engineer Duties</title>\n</head>\n<body>\n<h1>Apprenticeship</h1>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
+        htmlTemplate = '''<!DOCTYPE html>\n<html>\n<head>\n<title>DevOps Engineer Duties</title>\n<link rel="stylesheet" href="css/styles.css">\n</head>\n<body>\n<h1>Apprenticeship</h1>\n<ul>\n<li>Test!</li>\n</ul>\n</body>\n</html>'''
 
         output = html_writer.create_html()
 
@@ -151,6 +148,14 @@ class TestThemes:
         for i in range(1, 5):
             assert duties_map[i].description not in output
 
+        assert duties_map[6].description not in output
+
+        for i in range(8, 10):
+            assert duties_map[i].description not in output
+
+        assert duties_map[11].description not in output
+        assert duties_map[12].description not in output
+
     def test_get_houston_theme_duties(self):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
 
@@ -181,6 +186,11 @@ class TestThemes:
 
         for i in range(1, 6):
             assert duties_map[i].description not in output
+
+        assert duties_map[8].description not in output
+        assert duties_map[9].description not in output
+        assert duties_map[11].description not in output
+        assert duties_map[13].description not in output
 
     def test_get_deeper_theme_duties(self):
         appr = Apprenticeship(duties_map, themes_to_duties_map, themes_formatted)
