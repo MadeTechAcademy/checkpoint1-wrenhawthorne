@@ -30,6 +30,7 @@ class App:
         elif user_view_or_download == choices_display[2]:
             self.apprenticeship.output_html(html_file)
         elif user_view_or_download == choices_display[3]:
+            self.apprenticeship.output_html(html_file)
             timestamp = time.time()
             destination = os.path.expanduser(f'~/Downloads/{timestamp}_{html_file}')
             shutil.copy(html_file, destination)
