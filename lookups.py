@@ -17,14 +17,13 @@ duties_map = {
     }
 
 themes = {
-    '0': None,
-    '1': 'apprenticeship',
-    '2': 'bootcamp',
-    '3': 'automate',
-    '4': 'houston',
-    '5': 'deeper',
-    '6': 'assemble',
-    '7': 'security'
+    "1 Apprenticeship": 'apprenticeship',
+    "2 Bootcamp": 'bootcamp',
+    "3 Automate!": 'automate',
+    "4 Houston, Prepare to Launch": 'houston',
+    "5 Going Deeper": 'deeper',
+    "6 Assemble": 'assemble',
+    "7 Call Security": 'security'
 }
 
 themes_formatted = {
