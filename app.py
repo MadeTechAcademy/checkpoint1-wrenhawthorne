@@ -37,11 +37,6 @@ def app():
     cli_ui.info(cli_ui.standout, cli_ui.green, f"You have selected '{user_input}'\n")
     time.sleep(0.5)
 
-    # Ohh this should be reworked so after theme selection ANY set of duties can be displayed in terminal
-    if theme is None:
-        apprenticeship.print_duties()
-        return
-
     apprenticeship.set_theme(theme)
     duties = apprenticeship.get_duties_for_theme(theme)
     apprenticeship.set_duties_for_theme(duties)
@@ -58,14 +53,13 @@ def app():
     html_file = f'0{user_input}_{theme}.html'
     filename = 'file:///'+os.getcwd()+'/' + f'{html_file}'
     
-    if user_view_or_download == '1':
-        print('\nLoading...')
+    if user_view_or_download == choices_display[0]:
         apprenticeship.print_duties()
-    elif user_view_or_download == '2':
+    elif user_view_or_download == choices_display[1]:
         webbrowser.open_new_tab(filename)
-    elif user_view_or_download == '3':
+    elif user_view_or_download == choices_display[2]:
         apprenticeship.output_html(html_file)
-    elif user_view_or_download == '4':
+    elif user_view_or_download == choices_display[3]:
         timestamp = time.time()
         destination = os.path.expanduser(f'~/Downloads/{timestamp}_{html_file}')
         shutil.copy(html_file, destination)
